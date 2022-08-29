@@ -60,7 +60,7 @@ export default {
     methods:{
         editPost:function(id_post){
             console.log(id_post);
-            window.location="http://localhost:8080/post/edit"
+            window.location="https://blog-nvm.herokuapp.com/post/edit"
             window.localStorage.setItem('id_post',id_post);
         },
         deletePost:function(id_post,title){

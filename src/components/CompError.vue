@@ -3,7 +3,7 @@
 
     <h1 style="font-size:100px">{{error.status}}</h1>
     <h2>{{error.message}}</h2>
-    <a href='http://localhost:8080'><button class="btn btn-outline-dark">HOME</button></a>
+    <a href='https://blog-nvm.herokuapp.com'><button class="btn btn-outline-dark">HOME</button></a>
   </div>
 </template>
 
