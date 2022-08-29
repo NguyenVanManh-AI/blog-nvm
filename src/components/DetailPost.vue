@@ -81,8 +81,10 @@ export default {
 			this.$router.push({name:'Login'});
 		},
         getPosts:function(pathn){
-            console.log(pathn);
-            BaseRequest.get('posts/1')
+            this.$router.push({name:'DetailPost',params:{id:pathn.slice(7,pathn.length)}}); 
+            // console.log(pathn);
+            // console.log(pathn.slice(7,pathn.length));
+            BaseRequest.get('posts/'+pathn.slice(7,pathn.length))
                 .then( data=>{
                     this.post = data ; 
                     if(this.user != null && this.post.id_user == this.user.id){
