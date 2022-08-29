@@ -29,7 +29,7 @@
     </div>
     
     <paginate class="pag"
-      :page-count="Math.round(this.number_post/6)"
+      :page-count="Math.ceil(this.number_post/6)"
       :page-range="3"
       :margin-pages="2"
       :click-handler="clickCallback"
