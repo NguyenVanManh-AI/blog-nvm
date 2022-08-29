@@ -83,6 +83,7 @@ export default {
         getPosts:function(pathn){
             BaseRequest.get(pathn.substring(1,pathn.length))
                 .then( data=>{
+                    console.log(pathn.substring(1,pathn.length))
                     this.post = data ; 
                     if(this.user != null && this.post.id_user == this.user.id){
                         this.check = true ;
