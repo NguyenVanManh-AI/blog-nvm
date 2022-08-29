@@ -81,10 +81,9 @@ export default {
 			this.$router.push({name:'Login'});
 		},
         getPosts:function(pathn){
-            this.axios.get('https://m-fake-rest-api-nodejs.herokuapp.com/' + pathn.substring(1,pathn.length))
-                .then( response=>{
-                    console.log('https://m-fake-rest-api-nodejs.herokuapp.com/' + pathn.substring(1,pathn.length));
-                    this.post = response.data ; 
+            BaseRequest.get(pathn.substring(1,pathn.length))
+                .then( data=>{
+                    this.post = data ; 
                     if(this.user != null && this.post.id_user == this.user.id){
                         this.check = true ;
                     }
