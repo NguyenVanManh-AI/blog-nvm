@@ -55,7 +55,18 @@ export default {
     },
     mounted(){
         this.user = JSON.parse(window.localStorage.getItem('user'));
-        this.getPosts(window.location.pathname);
+        let pathn =  window.location.pathname;
+        BaseRequest.get('posts/'+pathn.slice(7,pathn.length))
+        .then( data=>{
+            this.post = data ; 
+            if(this.user != null && this.post.id_user == this.user.id){
+                this.check = true ;
+            }
+        }) 
+        .catch(error=>{
+            console.log(error.reponse.status);
+        })
+        console.log("new");
     },
     methods:{
         editPost:function(id_post){
@@ -80,19 +91,11 @@ export default {
 			localStorage.clear();
 			this.$router.push({name:'Login'});
 		},
-        getPosts:function(pathn){
-            // BaseRequest.get(pathn.substring(1,pathn.length))
-            BaseRequest.get('posts/'+pathn.slice(7,pathn.length))
-                .then( data=>{
-                    this.post = data ; 
-                    if(this.user != null && this.post.id_user == this.user.id){
-                        this.check = true ;
-                    }
-                }) 
-                .catch(error=>{
-                    console.log(error.reponse.status);
-                })
-        }
+        // getPosts:function(pathn){
+        //     // BaseRequest.get(pathn.substring(1,pathn.length))
+        //     // console.log('posts?id='+pathn.slice(7,pathn.length));
+            
+        // }
     }
 }
 </script>
