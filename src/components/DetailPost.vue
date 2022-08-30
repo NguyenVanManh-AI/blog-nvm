@@ -67,7 +67,7 @@ export default {
         .catch(error=>{
             console.log(error.reponse.status);
         })
-        console.log("new");
+        console.log("new 2");
     },
     methods:{
         editPost:function(id_post){
