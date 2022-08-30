@@ -56,9 +56,10 @@ export default {
     mounted(){
         this.user = JSON.parse(window.localStorage.getItem('user'));
         let pathn =  window.location.pathname;
-        BaseRequest.get('posts/'+pathn.slice(7,pathn.length))
-        .then( data=>{
-            this.post = data ; 
+        this.axios.get('https://m-fake-rest-api-nodejs.herokuapp.com/posts/'+pathn.slice(7,pathn.length))
+        .then( response=>{
+            console.log(response.data);
+            this.post = response.data ; 
             if(this.user != null && this.post.id_user == this.user.id){
                 this.check = true ;
             }
