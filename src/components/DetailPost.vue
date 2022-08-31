@@ -63,8 +63,7 @@ export default {
 
             emitEvent('geneEvent_route',title);
         }) 
-        .catch(function(error){
-            console.log(error);
+        .catch(()=>{
             router.push({name:'NotFound'});
         })
     },
