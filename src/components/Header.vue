@@ -56,12 +56,10 @@ export default {
         onEvent('geneEvent',()=>{
             if(window.localStorage.getItem('user')){
                 this.user = window.localStorage.getItem('user');
+                this.name = JSON.parse(this.user).lastName + ' ' + JSON.parse(this.user).firstName;
             }
 		})
-        if(this.user != null){
-            this.name = JSON.parse(this.user).lastName + ' ' + JSON.parse(this.user).firstName;
-        }
-        
+
         onEvent('geneEvent_route',(tit)=>{
             this.title = tit;
 		})

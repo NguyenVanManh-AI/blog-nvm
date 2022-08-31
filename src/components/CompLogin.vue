@@ -49,7 +49,7 @@ export default{
 		login:function(){
 			LoginRequest.post('login',this.loginUser)
 			.then( data => {
-				console.log("login success !");
+				// console.log("login success !");
 				window.localStorage.setItem('user',JSON.stringify(data));
 				this.$router.push({name:'Post'}); 
 				this.error = null ;
