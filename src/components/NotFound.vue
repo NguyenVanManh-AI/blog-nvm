@@ -1,8 +1,8 @@
 <template>
 	<div>
-		<h1 style="font-size: 100px;margin-top: 100px;">PAGE NOT FOUND !</h1>
+		<h1>PAGE NOT FOUND !</h1>
 		<img width="300" src="./../assets/404.jpg" style="display:block;margin-left: 36%;">
-        <a href='https://blog-nvm.herokuapp.com'><button class="btn btn-outline-dark" style="display:block;margin-left: 44%;">HOME</button></a>
+        <a href='https://blog-nvm.herokuapp.com'><button class="btn btn-outline-dark">HOME</button></a>
 	</div>
 </template>
 
@@ -16,8 +16,11 @@ export default{
 <style scoped>
 h1{
 	margin-top: 30px;
+	font-size: 100px;
 }
-a {
+button {
 	margin-bottom: 30px;
+	display: block;
+	margin-left: 44%;
 }
 </style>

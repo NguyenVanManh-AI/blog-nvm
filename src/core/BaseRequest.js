@@ -43,7 +43,8 @@ export default {
 					status : error.response.status
 				}
 				window.localStorage.setItem('error',JSON.stringify(errors));
-				router.push({name:'CompError'});
+				// router.push({name:'CompError'});
+				router.push({name:'NotFound'});
 				reject(error);
 			})
 		});
@@ -66,7 +67,7 @@ export default {
 					status : error.response.status
 				}
 				window.localStorage.setItem('error',JSON.stringify(errors));
-				router.push({name:'CompError'});
+				router.push({name:'NotFound'});
 				reject(error);
 			})
 		})
@@ -89,7 +90,7 @@ export default {
 					status : error.response.status
 				}
 				window.localStorage.setItem('error',JSON.stringify(errors));
-				router.push({name:'CompError'});
+				router.push({name:'NotFound'});
 				reject(error);
 			})
 		})
@@ -111,7 +112,7 @@ export default {
 					status : error.response.status
 				}
 				window.localStorage.setItem('error',JSON.stringify(errors));
-				router.push({name:'CompError'});
+				router.push({name:'NotFound'});
 				reject(error);
 			})
 		})

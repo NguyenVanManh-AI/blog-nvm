@@ -1,6 +1,5 @@
 <template>
-  <div>
-
+  <div id="er">
     <h1 style="font-size:100px">{{error.status}}</h1>
     <h2>{{error.message}}</h2>
     <a href='https://blog-nvm.herokuapp.com'><button class="btn btn-outline-dark">HOME</button></a>
@@ -32,6 +31,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+#er {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
 
 </style>

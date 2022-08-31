@@ -22,6 +22,7 @@
 
 import BaseRequest from '@/core/BaseRequest';
 import useEventBus from '../composables/useEventBus'
+import router from './../router/routes' 
 
 export default {
     name : "DetailPost",
@@ -62,8 +63,9 @@ export default {
 
             emitEvent('geneEvent_route',title);
         }) 
-        .catch(error=>{
-            console.log(error.reponse.status);
+        .catch(function(error){
+            console.log(error);
+            router.push({name:'NotFound'});
         })
     },
     methods:{
