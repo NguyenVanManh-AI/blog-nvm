@@ -1,27 +1,20 @@
 <template>
   <div>
-    <div class="header" id="li2" v-if="user!=null">
-      <button class="btn btn-success" @click="this.$router.push({name:'PostNew'});">New</button>
-      <button class="btn btn-primary" @click="this.$router.push({name:'Post'});">Home</button>
-      <button class="btn btn-secondary" @click="logout">Logout</button>
-    </div>
-    <h1>My Posts</h1>
-    <br><hr><br>
     <div class="article">
-      <div v-for="(postt,index) in list_post" :key="index">
-        <button class="showm btn-outline-primary" @click="showMore(postt.id)">Show More</button>
+      <div v-for="(postt,index) in list_post" :key="index" @click="showMore(postt.id)">
         <p class="back-gr"></p>
-        <img :src="postt.link_img" >
+        <div><img :src="postt.link_img" ></div>
         <h3>{{postt.title}}</h3>
+        <p>Tác giả : {{postt.auth}}</p>
         <p>{{postt.content}}</p>
         <p>{{postt.read_number}}</p>
-        <p>Tác giả : {{postt.auth}}</p>
         <!-- <p>ID_USER : {{postt.id_user}}</p> -->
         <p>Id Post : {{postt.id}}</p>
         Status <input type="checkbox" v-model="postt.status" disabled>
         <br><hr><br>
       </div>
     </div>
+    <h1 v-if="this.number_post<=0">Bạn chưa có bài viết nào . Hãy đi tạo mới bài viết .</h1>
     
     <paginate class="pag"
       :page-count="Math.ceil(this.number_post/6)"
@@ -84,13 +77,13 @@ export default {
             } 
         },
         logout:function(){
-			localStorage.clear();
-			this.$router.push({name:'Login'});
-		},
+          localStorage.clear();
+          this.$router.push({name:'Login'});
+        },
         getPosts:function(){
             BaseRequest.get('posts')
                 .then( data=>{
-                    this.posts = data ; 
+                    this.posts = data.reverse() ; 
                     this.filt(this.posts);
                 }) 
                 .catch(error=>{
@@ -122,26 +115,6 @@ export default {
 </script>
 
 <style scoped>
-.header{
-  position: fixed;
-  top: 10px;
-  left: 30px;
-  background-color: #edf2ff;
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  line-height: 60px;
-  border-radius: 6px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-#li1 {
-  width: 180px;
-}
-#li2{
-  width: 260px;
-}
 .pag {
   margin-left:41%;
   margin-bottom: 60px;
@@ -156,7 +129,7 @@ export default {
   margin-top: 10px; /* font */
   font-family: 'Lobster', cursive;
 }
-.article div {
+.article > div {
   width: 30%;
   border-top: 6px solid white;
   border-left: 6px solid white;
@@ -167,37 +140,29 @@ export default {
   overflow: hidden;
   position: relative;
 }
+.article > div > div {
+  width: 100%;
+  overflow: hidden;
+}
 .article div img {
   width: 100%;
+  transition: all .3s ease;
 }
 .article div:hover {
-  width: 32%;
   cursor: pointer;
-  /* box-shadow: none; */
+}
+.article div:hover img {
+  transform: scale(1.3);
 }
 .article div:hover > .back-gr{
-  display: none;
+  background: linear-gradient(0deg, rgb(174, 250, 172) 0%, rgba(245,177,33,0) 100%);
 }
-.article div:hover > .showm{
-  display: block;
-}
-.showm{
-  position: absolute;
-  top: 6%;
-  right: 5%;
-  display: none;
-  background-color: transparent;
-  border-radius: 6px;
-}
-
 .back-gr{
   position:absolute;
   bottom:-20px;
   left:0px;
-  background: rgb(209,137,137);
-  background: linear-gradient(0deg, rgb(211, 180, 249) 0%, rgba(245,177,33,0) 100%);
+  background: linear-gradient(0deg, rgb(97, 247, 120) 0%, rgba(245,177,33,0) 100%);
   width: 100%;
   height: 60%;
 }
-
 </style>

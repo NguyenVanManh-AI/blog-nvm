@@ -1,10 +1,5 @@
 <template>
-    <div id="header">
-      <button class="btn btn-outline-primary" @click="this.$router.push({name:'Post'});">Home</button>
-    </div>
   <div>
-    <h1>New Post</h1>
-    <br><hr><br>
     <h1>Title</h1>
     <input v-model="post.title" style="width:600px;font-weight: bold;" placeholder="Title">
     <h2>Content</h2>
@@ -74,23 +69,4 @@ export default {
 
 <style scoped>
 
-#d1{
-    width: 600px;
-    height: 600px;
-    display: inline-block;
-}
-#header{
-  position: fixed;
-  top: 10px;
-  left: 30px;
-  background-color: #edf2ff;
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  line-height: 60px;
-  border-radius: 6px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
 </style>

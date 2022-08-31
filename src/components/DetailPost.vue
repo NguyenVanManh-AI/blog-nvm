@@ -1,15 +1,5 @@
 <template>
   <div>
-    <div class="header" id="li2" v-if="user!=null">
-      <button class="btn btn-success" @click="this.$router.push({name:'PostNew'});">New</button>
-      <button class="btn btn-primary" @click="this.$router.push({name:'Post'});">Home</button>
-      <button class="btn btn-secondary" @click="logout">Logout</button>
-    </div>
-    <div id="header2" v-if="user==null">
-      <button class="btn btn-outline-primary" @click="this.$router.push({name:'Post'});">Home</button>
-    </div>
-    <h1>Post Detail</h1>
-    <br><hr><br>
     <div id="post">
         <h1 class="alert alert-primary" role="alert">{{post.title}}</h1>
         <p id="content" class="alert alert-secondary" role="alert">{{post.content}}</p>
@@ -31,6 +21,7 @@
 <script scoped>
 
 import BaseRequest from '@/core/BaseRequest';
+import useEventBus from '../composables/useEventBus'
 
 export default {
     name : "DetailPost",
@@ -50,28 +41,33 @@ export default {
             check:false,
         }
     },
+    setup(){
+
+    },
     computed(){
 
     },
     mounted(){
+        const { emitEvent } = useEventBus()
+
         this.user = JSON.parse(window.localStorage.getItem('user'));
         let pathn =  window.location.pathname;
         this.axios.get('https://m-fake-rest-api-nodejs.herokuapp.com/posts?id='+pathn.slice(7,pathn.length))
         .then( response=>{
-            console.log(response.data[0]);
             this.post = response.data[0] ; 
+            let title = this.post.title;
             if(this.user != null && this.post.id_user == this.user.id){
                 this.check = true ;
             }
+
+            emitEvent('geneEvent_route',title);
         }) 
         .catch(error=>{
             console.log(error.reponse.status);
         })
-        console.log("new 2");
     },
     methods:{
         editPost:function(id_post){
-            console.log(id_post);
             this.$router.push({name:'PostEdit'}); 
             window.localStorage.setItem('id_post',id_post);
         },
@@ -102,40 +98,6 @@ export default {
 </script>
 
 <style>
-#header2{
-  position: fixed;
-  top: 10px;
-  left: 30px;
-  background-color: #edf2ff;
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  line-height: 60px;
-  border-radius: 6px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-.header{
-  position: fixed;
-  top: 10px;
-  left: 30px;
-  background-color: #edf2ff;
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  line-height: 60px;
-  border-radius: 6px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-#li1 {
-  width: 180px;
-}
-#li2{
-  width: 260px;
-}
 #post {
     margin: 30px;
 }

@@ -1,26 +1,13 @@
 <template>
-    <div class="header" id="li1" v-if="user==null">
-      <button class="btn btn-outline-primary" @click="this.$router.push({name:'Login'});">Login</button>
-      <button class="btn btn-outline-primary" @click="this.$router.push({name:'Register'});">Register</button>
-    </div>
-
-    <h1>Home</h1>
-    <h1 class="alert alert-success" role="alert" v-if="user==null">Signin to create a post !</h1>
-    <div class="header" id="li2" v-if="user!=null">
-      <button class="btn btn-success" @click="this.$router.push({name:'PostNew'});">New</button>
-      <button class="btn btn-primary" @click="this.$router.push({name:'MyPost'});">My Posts</button>
-      <button class="btn btn-secondary" @click="logout">Logout</button>
-    </div>
-    <br><hr><br>
+  <div>
     <div class="article">
-      <div v-for="(postt,index) in list_post" :key="index">
-        <button class="showm btn-outline-primary" @click="showMore(postt.id)">Show More</button>
+      <div v-for="(postt,index) in list_post" :key="index" @click="showMore(postt.id);">
         <p class="back-gr"></p>
-        <img :src="postt.link_img" >
+        <div><img :src="postt.link_img" ></div>
         <h3>{{postt.title}}</h3>
+        <p>Tác giả : {{postt.auth}}</p>
         <p>{{postt.content}}</p>
         <p>{{postt.read_number}}</p>
-        <p>Tác giả : {{postt.auth}}</p>
         <!-- <p>ID_USER : {{postt.id_user}}</p> -->
         <p>Id Post : {{postt.id}}</p>
         Status <input type="checkbox" v-model="postt.status" disabled>
@@ -38,6 +25,7 @@
       :container-class="'pagination'"
       :page-class="'page-item'">
     </paginate>
+  </div>
 </template>
 
 
@@ -45,6 +33,7 @@
 
 import Paginate from 'vuejs-paginate-next';
 import BaseRequest from '@/core/BaseRequest';
+import useEventBus from '../composables/useEventBus'
 
 export default {
     name : "CompPost",
@@ -54,7 +43,6 @@ export default {
     data(){
         return{
             posts:null,
-            user:null,
             number_post:null,
             list_post:null,
             show:true,
@@ -63,24 +51,27 @@ export default {
     computed:{
 
     },
+    setup(){
+      const { emitEvent } = useEventBus()
+      return {
+        geneEvent:function(){
+          emitEvent('geneEvent');
+        },
+      }
+    },
     mounted(){
+        this.geneEvent();
         BaseRequest.get('posts')
         .then( data =>{
-            this.posts = data ; 
+            this.posts = data.reverse() ; 
             this.number_post = this.posts.length;
             this.list_post = this.posts.slice(0, 6);
         }) 
         .catch(error=>{
             console.log(error.reponse.status);
-        }),
-        this.user = window.localStorage.getItem('user');
-
+        })
     },
     methods:{
-      logout:function(){
-        localStorage.clear();
-        this.$router.push({name:'Login'});
-      },
       clickCallback : function(pageNum){
         if(pageNum == 1){
           this.list_post = this.posts.slice(0, 6);
@@ -101,26 +92,11 @@ export default {
 
 /* google font */
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');/* font */
-.header{
-  position: fixed;
-  top: 10px;
-  left: 30px;
-  background-color: #edf2ff;
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  line-height: 60px;
-  border-radius: 6px;
-  padding-left: 10px;
-  padding-right: 10px;
+
+* {
+  list-style: none;
 }
-#li1 {
-  width: 180px;
-}
-#li2{
-  width: 260px;
-}
+
 .pag {
   margin-left:41%;
   margin-bottom: 60px;
@@ -135,7 +111,7 @@ export default {
   margin-top: 10px; /* font */
   font-family: 'Lobster', cursive;
 }
-.article div {
+.article > div {
   width: 30%;
   border-top: 6px solid white;
   border-left: 6px solid white;
@@ -146,38 +122,29 @@ export default {
   overflow: hidden;
   position: relative;
 }
+.article > div > div {
+  width: 100%;
+  overflow: hidden;
+}
 .article div img {
   width: 100%;
+  transition: all .3s ease;
 }
 .article div:hover {
-  width: 32%;
   cursor: pointer;
-  /* box-shadow: none; */
+}
+.article div:hover img {
+  transform: scale(1.3);
 }
 .article div:hover > .back-gr{
-  display: none;
+  background: linear-gradient(0deg, rgb(149, 202, 251) 0%, rgba(245,177,33,0) 100%);
 }
-.article div:hover > .showm{
-  display: block;
-}
-.showm{
-  position: absolute;
-  top: 6%;
-  right: 5%;
-  display: none;
-  background-color: transparent;
-  border-radius: 6px;
-}
-
 .back-gr{
   position:absolute;
   bottom:-20px;
   left:0px;
-  background: rgb(209,137,137);
   background: linear-gradient(0deg, rgb(94 168 239) 0%, rgba(245,177,33,0) 100%);
   width: 100%;
   height: 60%;
 }
-
-
 </style>

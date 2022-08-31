@@ -11,7 +11,6 @@ import Paginate from "vuejs-paginate-next";
 
 import storeConfigs  from './store/store'
 
-
 const app = createApp(App);
 
 app.use(router);

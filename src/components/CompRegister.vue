@@ -1,9 +1,5 @@
 <template>
 	<div>
-    <div id="header">
-      <button class="btn btn-outline-primary" @click="this.$router.push({name:'Post'});">Home</button>
-      <button class="btn btn-outline-primary" @click="this.$router.push({name:'Register'});">Register</button>
-    </div>
 		<h1>Register</h1>
 		<div class="row mx-auto">
 		<form class="col-6 mx-auto" action="https://m-fake-rest-api-nodejs.herokuapp.com/register" @submit.prevent="register()">
@@ -28,9 +24,9 @@
           <div class="form-group">
             <input v-model="registerUser.password" type="password" class="form-control" placeholder="Enter Password">
           </div> 
-          <div class="form-group">
-            <input v-model="registerUser.avatar" type="text" class="form-control" placeholder="link avatar">
-          </div> 
+          <!-- <div class="form-group">
+            <input v-model="registerUser.avatar" type="text" class="form-control" placeholder="Link avatar">
+          </div>  -->
           <fieldset class="form-group">
               <div class="row" >
                 <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
@@ -89,19 +85,10 @@ import LoginRequest from '../requests/LoginRequest'
 </script>
 
 <style scoped>
-#header{
-  position: fixed;
-  top: 10px;
-  left: 30px;
-  background-color: #edf2ff;
-  width: 180px;
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  line-height: 60px;
-  border-radius: 6px;
-  padding-left: 10px;
-  padding-right: 10px;
+form {
+  margin-bottom: 30px;
+}
+h1 {
+	margin-top: 30px;
 }
 </style>

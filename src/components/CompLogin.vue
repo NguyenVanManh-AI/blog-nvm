@@ -1,9 +1,4 @@
 <template>
-	<div id="header">
-      <button class="btn btn-primary" @click="this.$router.push({name:'Post'});">Home</button>
-      <button class="btn btn-primary" @click="this.$router.push({name:'Register'});">Register</button>
-  </div>
-  <br><br><br>
 	<div>
     <h1>Login</h1>
     <div class="row mx-auto">
@@ -20,6 +15,7 @@
           <div class="form-group">
             <button style="width: 100%" role="button" class="btn btn-primary btn-block">Login</button>
           </div>
+          <div class="form-group text-primary"><a class="pe-auto" href="#" @click="this.$router.push({name:'Register'});">Do not have an account ? Register here.</a></div>
         </form>
       </div>
 	</div>
@@ -40,6 +36,9 @@ export default{
 			error:null,
 		}
 	},
+  setup(){
+    
+  },
 	mounted(){
 
 	},
@@ -51,12 +50,12 @@ export default{
 			LoginRequest.post('login',this.loginUser)
 			.then( data => {
 				console.log("login success !");
-        window.localStorage.setItem('user',JSON.stringify(data));
+				window.localStorage.setItem('user',JSON.stringify(data));
 				this.$router.push({name:'Post'}); 
-        this.error = null ;
+				this.error = null ;
 			})
 			.catch( error => {
-        this.error = error;
+				this.error = error;
 				console.log(error.message);
 				console.log("login false !");
 			})
@@ -66,19 +65,10 @@ export default{
 </script>
 
 <style scoped>
-#header{
-  position: fixed;
-  top: 10px;
-  left: 30px;
-  background-color: #edf2ff;
-  width: 180px;
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  line-height: 60px;
-  border-radius: 6px;
-  padding-left: 10px;
-  padding-right: 10px;
+form {
+  margin-bottom: 30px;
+}
+h1 {
+	margin-top: 30px;
 }
 </style>

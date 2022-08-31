@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import useEventBus from '../composables/useEventBus'
 
 
 import Login from './../components/CompLogin'
@@ -38,6 +39,11 @@ router.beforeEach((to,from,next)=>{
             next({name:'Login'});
             alert("Bạn chưa đăng nhập !");
         }
+    }
+
+    if(to.path.indexOf('/posts/')){
+        const { emitEvent } = useEventBus();
+        emitEvent('geneEvent_route',null);
     }
     next();
 })
