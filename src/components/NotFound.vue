@@ -13,6 +13,11 @@ export default{
 
 </script>
 
-<style>
-	
+<style scoped>
+h1{
+	margin-top: 30px;
+}
+a {
+	margin-bottom: 30px;
+}
 </style>
