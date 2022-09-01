@@ -9,8 +9,8 @@
         <!-- <p>ID_USER : {{post.id_user}}</p> -->
         Status <input type="checkbox" v-model="post.status" disabled>
         <div v-if="check"> 
-            <button class="btn btn-primary" @click="editPost(post.id)">Edit</button> 
-            <button class="btn btn-danger" @click="deletePost(post.id,post.title)" style="margin-left: 10px;">Delete</button> 
+            <button class="btn btn-outline-primary btngr" @click="editPost(post.id)">Edit</button> 
+            <button class="btn btn-outline-danger btngr" @click="deletePost(post.id,post.title)" style="margin-left: 10px;">Delete</button> 
         </div>
         <br><hr><br>
     </div>
@@ -98,7 +98,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.btngr{
+    transition: all 1s ease;
+}
 #post {
     margin: 30px;
 }

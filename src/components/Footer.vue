@@ -31,6 +31,8 @@
                   <li><a href="#">Sublime Text</a></li>
                   <li><a href="#">Docker</a></li>
                   <li><a href="#">Xampp</a></li>
+                  <li><a href="#">PhpMyadmin</a></li>
+                  <li><a href="#">Postman</a></li>
                   <li><a href="#">NPM</a></li>
                   <li><a href="#">Composer</a></li>
                 </ul>

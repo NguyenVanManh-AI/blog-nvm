@@ -11,7 +11,7 @@
     <input v-model="post.read_number">
     <h3>Status</h3>
     <input type="checkbox" v-model="post.status">
-    <div> <button class="btn btn-primary" @click="addPost()">Add</button> </div>
+    <div> <button class="btn btn-outline-primary btnadd" @click="addPost()">Add</button> </div>
 
     <br><hr><br>
     <!-- <TinymceEditorVue></TinymceEditorVue> -->
@@ -68,5 +68,7 @@ export default {
 </script>
 
 <style scoped>
-
+.btnadd {
+    transition: all 1s ease;
+}
 </style>

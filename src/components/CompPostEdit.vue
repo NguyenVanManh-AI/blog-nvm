@@ -12,7 +12,7 @@
     <input v-model="post.read_number">
     <h3>Status</h3>
     <input type="checkbox" v-model="post.status">
-    <div> <button class="btn btn-primary" @click="savePost(post.id)">Save</button> </div>
+    <div> <button class="btn btn-outline-primary btnsave" @click="savePost(post.id)">Save</button> </div>
 
     <br><hr><br>
   </div>
@@ -69,5 +69,7 @@ export default {
 </script>
 
 <style scoped>
-    
+.btnsave {
+    transition: all 1s ease;
+}
 </style>

@@ -22,5 +22,6 @@ button {
 	margin-bottom: 30px;
 	display: block;
 	margin-left: 44%;
+	transition: all 1s ease;
 }
 </style>
