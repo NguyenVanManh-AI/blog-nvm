@@ -95,6 +95,29 @@ export default {
 			})
 		})
 	},
+	patch(url,data){
+		return new Promise( (resolve, reject) =>{
+			axios.patch(
+				config.API_URL + '/' + url, 
+				data,
+				{
+					headers : this._getHeaders()
+				}
+			)
+			.then( response =>{
+				resolve(response.data);
+			})
+			.catch( error => {
+				let errors = {
+					message : error.message,
+					status : error.response.status
+				}
+				window.localStorage.setItem('error',JSON.stringify(errors));
+				router.push({name:'NotFound'});
+				reject(error);
+			})
+		})
+	},
 	delete(url){
 		return new Promise( (resolve, reject) =>{
 			axios.delete(

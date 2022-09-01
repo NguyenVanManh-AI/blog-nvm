@@ -11,6 +11,7 @@ import MyPost from './../components/MyPosts'
 import PostNew from './../components/CompPostNew'
 import CompError from './../components/CompError'
 import NotFound from './../components/NotFound'
+import InFor from './../components/Infor'
 
 const routes = [
     {path: '/login',component: Login,name:'Login'},    
@@ -21,6 +22,7 @@ const routes = [
     {path: '/post/edit',component: PostEdit,name:'PostEdit'}, 
     {path: '/post/new',component: PostNew,name:'PostNew'}, 
     {path: '/error',component: CompError,name:'CompError'}, 
+    {path: '/infor',component: InFor,name:'InFor'}, 
     {path: '/:NotFound(.*)*',component: NotFound,name:'NotFound'}
     
 ];

@@ -17,7 +17,7 @@
                             <i class="fa-solid fa-circle-user"></i>
                         </button>
                         <div class="dropdown-menu bt" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" style="font-weight:bold">User : {{name}}</a>
+                            <a class="dropdown-item" style="font-weight:bold" @click="this.$router.push({name:'InFor'});">User : {{name}}</a>
                             <a class="dropdown-item" href="#" @click="this.$router.push({name:'PostNew'});"><i class="fa-solid fa-plus"></i> New</a>
                             <a class="dropdown-item" href="#" @click="this.$router.push({name:'MyPost'});"><i class="fa-solid fa-list"></i> My Posts</a>
                             <a class="dropdown-item" href="#" @click="logout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
@@ -52,11 +52,13 @@ export default {
     },
     mounted(){
         this.user = window.localStorage.getItem('user');
+        this.name = window.localStorage.getItem('name');
         const { onEvent } = useEventBus()
         onEvent('geneEvent',()=>{
             if(window.localStorage.getItem('user')){
                 this.user = window.localStorage.getItem('user');
-                this.name = JSON.parse(this.user).lastName + ' ' + JSON.parse(this.user).firstName;
+                window.localStorage.setItem('name',JSON.parse(this.user).lastName + ' ' + JSON.parse(this.user).firstName);
+                this.name = window.localStorage.getItem('name');
             }
 		})
 
