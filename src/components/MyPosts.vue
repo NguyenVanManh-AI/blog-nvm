@@ -5,7 +5,6 @@
         <p class="back-gr"></p>
         <div><img :src="postt.link_img" ></div>
         <h3>{{postt.title}}</h3>
-        <p>Tác giả : {{postt.auth}}</p>
         <div style="width:100%;cursor: pointer;">
           <quill-editor
             v-model:value="postt.content"
