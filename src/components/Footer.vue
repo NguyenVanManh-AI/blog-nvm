@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id="footer">
-          <div id="logo"><a @click="this.$router.push({name:'Post'});"><img src="./../../public/logo_blog.png" alt="HOME"> BLOG APP</a></div>
+          <div id="logo"><a href="https://blog-nvm.herokuapp.com/"><img src="./../../public/logo_blog.png" alt="HOME"> BLOG APP</a></div>
           <div id="top">
             <ul>
               <li class="n1">

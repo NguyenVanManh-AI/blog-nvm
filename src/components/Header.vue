@@ -5,7 +5,7 @@
         <!-- icon font awesome -->
         <div id="big">
             <div id="head">
-                <div id="logo"><a @click="this.$router.push({name:'Post'});"><img src="./../assets/logo_blog.png" alt="HOME"></a></div>
+                <div id="logo"><a href="https://blog-nvm.herokuapp.com/"><img src="./../assets/logo_blog.png" alt="HOME"></a></div>
                 <div id="gr1" v-if="user==null">
                     <button class="btn btn-outline-primary" @click="this.$router.push({name:'Login'});">Login</button>
                     <button class="btn btn-outline-primary" @click="this.$router.push({name:'Register'});">Register</button>
@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div id="tit" v-if="title">
-                <a  @click="this.$router.push({name:'Post'});"><i class="fa-solid fa-house"></i>Home</a>
+                <a href="https://blog-nvm.herokuapp.com/"><i class="fa-solid fa-house"></i>Home</a>
                 <i class="fa-solid fa-angle-right"></i>
                 <a>{{title}}</a>
             </div>
