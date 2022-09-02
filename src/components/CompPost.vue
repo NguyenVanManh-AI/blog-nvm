@@ -6,7 +6,7 @@
         <div><img :src="postt.link_img" ></div>
         <h3>{{postt.title}}</h3>
         <p>Tác giả : {{postt.auth}}</p>
-        <div style="width:100%">
+        <div style="width:100%;cursor: pointer;">
           <quill-editor
             v-model:value="postt.content"
             :options="state.editorOption"
@@ -164,7 +164,7 @@ export default {
   width: 30%;
   border-top: 6px solid white;
   border-left: 6px solid white;
-  box-shadow: 20px 20px 10px -10px gray;
+  box-shadow: 25px 25px 10px -10px rgb(210, 210, 210);
   border-radius:20px ;
   height: 360px;
   margin: 10px;

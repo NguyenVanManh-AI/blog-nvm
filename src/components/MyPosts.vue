@@ -6,7 +6,7 @@
         <div><img :src="postt.link_img" ></div>
         <h3>{{postt.title}}</h3>
         <p>Tác giả : {{postt.auth}}</p>
-        <div style="width:100%">
+        <div style="width:100%;cursor: pointer;" class="nm">
           <quill-editor
             v-model:value="postt.content"
             :options="state.editorOption"
@@ -182,7 +182,7 @@ export default {
   width: 30%;
   border-top: 6px solid white;
   border-left: 6px solid white;
-  box-shadow: 20px 20px 10px -10px gray;
+  box-shadow: 25px 25px 10px -10px rgb(210, 210, 210);
   border-radius:20px ;
   height: 360px;
   margin: 10px;
@@ -201,6 +201,13 @@ export default {
   cursor: pointer;
 }
 .article div:hover img {
+  transform: scale(1.3);
+}
+.nm {
+  width: 100%;
+  transition: all .3s ease;
+}
+.article div:hover .nm{
   transform: scale(1.3);
 }
 .article div:hover > .back-gr{
