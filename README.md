@@ -1,4 +1,4 @@
-# vue-api-auth
+# vue-api-auth-crud
 ## Demo
 ```
 https://blog-nvm.herokuapp.com/
