@@ -6,7 +6,14 @@
         <div><img :src="postt.link_img" ></div>
         <h3>{{postt.title}}</h3>
         <p>Tác giả : {{postt.auth}}</p>
-        <p v-html="postt.content"></p>
+        <div style="width:100%">
+          <quill-editor
+            v-model:value="postt.content"
+            :options="state.editorOption"
+            :disabled="state.disabled"
+            @change="onEditorChange($event)"
+            />
+        </div>
         <p>{{postt.read_number}}</p>
         <!-- <p>ID_USER : {{postt.id_user}}</p> -->
         <p>Id Post : {{postt.id}}</p>
@@ -34,6 +41,7 @@
 
 import BaseRequest from '@/core/BaseRequest';
 import Paginate from 'vuejs-paginate-next';
+import { reactive } from "vue";
 
 export default {
     name : "CompPost",
@@ -48,6 +56,47 @@ export default {
             myPosts:[],
             list_post:null,
         }
+    },
+    setup(){
+      // rich
+      const state = reactive({
+        content: "<p></p>",
+        _content: "",
+        editorOption: {
+          placeholder: "core",
+          modules: {
+            toolbar: [  ],
+            // other moudle options here
+            // otherMoudle: {}
+          },
+          // more options
+        },
+        disabled: true,
+      });
+  
+      const onEditorBlur = (quill) => {
+        console.log("editor blur!", quill);
+      };
+      const onEditorFocus = (quill) => {
+        console.log("editor focus!", quill);
+      };
+      const onEditorReady = (quill) => {
+        console.log("editor ready!", quill);
+      };
+      const onEditorChange = ({ quill, html, text }) => {
+        console.log("editor change!", quill, html, text);
+        state._content = html;
+      };
+      // rich
+
+      return {
+        // rich
+        state,
+        onEditorBlur,
+        onEditorFocus,
+        onEditorReady,
+        onEditorChange,
+      }
     },
     computed(){
         console.log(this.posts);
