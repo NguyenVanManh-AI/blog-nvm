@@ -6,7 +6,7 @@
         <div><img :src="postt.link_img" ></div>
         <h3>{{postt.title}}</h3>
         <p>Tác giả : {{postt.auth}}</p>
-        <p>{{postt.content}}</p>
+        <p v-html="postt.content"></p>
         <p>{{postt.read_number}}</p>
         <!-- <p>ID_USER : {{postt.id_user}}</p> -->
         <p>Id Post : {{postt.id}}</p>

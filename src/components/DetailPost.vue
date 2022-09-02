@@ -2,8 +2,19 @@
   <div>
     <div id="post">
         <h1 class="alert alert-primary" role="alert">{{post.title}}</h1>
-        <p id="content" class="alert alert-secondary" role="alert">{{post.content}}</p>
         <img :src="post.link_img" >
+        <!-- <p id="content" class="alert alert-secondary" role="alert" v-html="post.content"></p> -->
+
+        <div  class="vueq">
+            <quill-editor
+            v-model:value="state.content"
+            :options="state.editorOption"
+            :disabled="state.disabled"
+            @change="onEditorChange($event)"
+            />
+        </div>
+
+        
         <p>{{post.read_number}}</p>
         <p class="alert alert-success" role="alert" >Tác giả : {{post.auth}}</p>
         <!-- <p>ID_USER : {{post.id_user}}</p> -->
@@ -23,6 +34,7 @@
 import BaseRequest from '@/core/BaseRequest';
 import useEventBus from '../composables/useEventBus'
 import router from './../router/routes' 
+import { reactive } from "vue";
 
 export default {
     name : "DetailPost",
@@ -42,8 +54,47 @@ export default {
             check:false,
         }
     },
-    setup(){
-
+    setup() {
+      const state = reactive({
+        content: "<p></p>",
+        _content: "",
+        editorOption: {
+          placeholder: "core",
+          modules: {
+            toolbar: [  ],
+            // other moudle options here
+            // otherMoudle: {}
+          },
+          // more options
+        },
+        disabled: true,
+      });
+  
+      const onEditorBlur = (quill) => {
+        console.log("editor blur!", quill);
+      };
+      const onEditorFocus = (quill) => {
+        console.log("editor focus!", quill);
+      };
+      const onEditorReady = (quill) => {
+        console.log("editor ready!", quill);
+      };
+      const onEditorChange = ({ quill, html, text }) => {
+        console.log("editor change!", quill, html, text);
+        state._content = html;
+      };
+  
+      // setTimeout(() => {
+      //   state.disabled = true;
+      // }, 2000);
+  
+      return {
+        state,
+        onEditorBlur,
+        onEditorFocus,
+        onEditorReady,
+        onEditorChange,
+      };
     },
     computed(){
 
@@ -57,6 +108,7 @@ export default {
         .then( response=>{
             this.post = response.data[0] ; 
             let title = this.post.title;
+            this.state.content = this.post.content;
             if(this.user != null && this.post.id_user == this.user.id){
                 this.check = true ;
             }
@@ -111,5 +163,8 @@ export default {
 }
 #post img {
     width: 500px;
+}
+.vueq {
+    width: 1200px;
 }
 </style>

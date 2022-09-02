@@ -11,10 +11,14 @@ import Paginate from "vuejs-paginate-next";
 
 import storeConfigs  from './store/store'
 
+import { quillEditor } from "vue3-quill";
+// console.log(quillEditor);
+
 const app = createApp(App);
 
 app.use(router);
 app.use(VueAxios, axios)
 app.use(storeConfigs)
 app.use(Paginate)
+app.use( quillEditor )
 app.mount('#app')

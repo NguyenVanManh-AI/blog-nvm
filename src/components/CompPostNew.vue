@@ -1,34 +1,84 @@
 <template>
-  <div>
-    <h1>Title</h1>
-    <input v-model="post.title" style="width:600px;font-weight: bold;" placeholder="Title">
-    <h2>Content</h2>
-    <textarea v-model="post.content" style="width:600px;height: 300px;" placeholder="Content"></textarea>
-    <!-- <RichTextEditorVue v-model="post.content" style="width:600px;height: 300px;" placeholder="Content"></RichTextEditorVue> -->
-    <h3>Link Img</h3>
-    <input v-model="post.link_img" style="width:600px" placeholder="Link img">
-    <h3>Reader Number</h3>
-    <input v-model="post.read_number">
-    <h3>Status</h3>
-    <input type="checkbox" v-model="post.status">
+  <div id="big">
+    <h1>Add Post</h1>
+
+    <div class="iput">
+        <h3>Title</h3>
+        <input v-model="post.title" placeholder="Title" class="form-control" aria-describedby="emailHelp" >
+    </div>
+
+    <div class="iput">
+        <h3>Link Cover Photo</h3>
+        <input v-model="post.link_img" placeholder="Link cover photo" class="form-control" aria-describedby="emailHelp" >
+    </div>
+    
+    <div id="content">
+        <h3>Content</h3>
+        <quill-editor
+            v-model:value="state.content"
+            :options="state.editorOption"
+            :disabled="state.disabled"
+            @blur="onEditorBlur($event)"
+            @focus="onEditorFocus($event)"
+            @ready="onEditorReady($event)"
+            @change="onEditorChange($event)"
+        />
+    </div>
+    
+    <div class="iput" id="stt">
+        <h3>Status </h3>
+        <input type="checkbox" v-model="post.status">
+    </div>
     <div> <button class="btn btn-outline-primary btnadd" @click="addPost()">Add</button> </div>
 
-    <br><hr><br>
-    <!-- <TinymceEditorVue></TinymceEditorVue> -->
-  </div>
+</div>
 </template>
 
 <script>
+
+import { reactive } from "vue";
 import BaseRequest from '@/core/BaseRequest';
-// import RichTextEditorVue from './RichTextEditor.vue';
-// import TinymceEditorVue from './TinymceEditor.vue'
 
 export default {
     
     name : "PostNew",
     components:{
-        // RichTextEditorVue,
-        // TinymceEditorVue
+        
+    },
+    setup() {
+      const state = reactive({
+        content: "<p></p>",
+        _content: "",
+        editorOption: {
+          placeholder: "Content",
+          modules: {
+
+          },
+        },
+        disabled: false,
+      });
+  
+      const onEditorBlur = (quill) => {
+        console.log("editor blur!", quill);
+      };
+      const onEditorFocus = (quill) => {
+        console.log("editor focus!", quill);
+      };
+      const onEditorReady = (quill) => {
+        console.log("editor ready!", quill);
+      };
+      const onEditorChange = ({ quill, html, text }) => {
+        console.log("editor change!", quill, html, text);
+        state._content = html;
+      };
+  
+      return {
+        state,
+        onEditorBlur,
+        onEditorFocus,
+        onEditorReady,
+        onEditorChange,
+      };
     },
     data(){
         return{
@@ -50,6 +100,7 @@ export default {
     },
     methods:{
         addPost:function(){
+            this.post.content = this.state.content;
             this.post.id_user = JSON.parse(window.localStorage.getItem('user')).id;
             this.post.auth = JSON.parse(window.localStorage.getItem('user')).lastName + 
                             JSON.parse(window.localStorage.getItem('user')).firstName;
@@ -61,13 +112,44 @@ export default {
             .catch(error=>{
                 console.log(error.reponse.status);
             })
-        }
+        },
     }
 
 }
 </script>
 
 <style scoped>
+#big {
+    max-width: 1280px;
+    padding: 120px;
+    padding-top: 30px;
+}
+
+
+.iput {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    margin-bottom: 30px;
+}
+.iput input{
+    font-weight: bold;
+}
+#title input {
+    width: 100%px;
+    font-weight: bold;
+}
+
+#content {
+    margin-bottom: 30px;
+}
+#content h3 {
+    margin-right: 1000px;
+}
+
+#stt h3 {
+    margin-right: 10px;
+}
 .btnadd {
     transition: all 1s ease;
 }

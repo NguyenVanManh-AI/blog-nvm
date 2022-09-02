@@ -6,7 +6,14 @@
         <div><img :src="postt.link_img" ></div>
         <h3>{{postt.title}}</h3>
         <p>Tác giả : {{postt.auth}}</p>
-        <p>{{postt.content}}</p>
+        <div style="width:100%">
+          <quill-editor
+            v-model:value="postt.content"
+            :options="state.editorOption"
+            :disabled="state.disabled"
+            @change="onEditorChange($event)"
+            />
+        </div>
         <p>{{postt.read_number}}</p>
         <!-- <p>ID_USER : {{postt.id_user}}</p> -->
         <p>Id Post : {{postt.id}}</p>
@@ -15,6 +22,7 @@
       </div>
     </div>
     
+
     <paginate class="pag"
       :page-count="Math.ceil(this.number_post/6)"
       :page-range="3"
@@ -29,11 +37,12 @@
 </template>
 
 
-<script scoped>
+<script>
 
 import Paginate from 'vuejs-paginate-next';
 import BaseRequest from '@/core/BaseRequest';
 import useEventBus from '../composables/useEventBus'
+import { reactive } from "vue";
 
 export default {
     name : "CompPost",
@@ -53,10 +62,50 @@ export default {
     },
     setup(){
       const { emitEvent } = useEventBus()
+
+      // rich
+      const state = reactive({
+        content: "<p></p>",
+        _content: "",
+        editorOption: {
+          placeholder: "core",
+          modules: {
+            toolbar: [  ],
+            // other moudle options here
+            // otherMoudle: {}
+          },
+          // more options
+        },
+        disabled: true,
+      });
+  
+      const onEditorBlur = (quill) => {
+        console.log("editor blur!", quill);
+      };
+      const onEditorFocus = (quill) => {
+        console.log("editor focus!", quill);
+      };
+      const onEditorReady = (quill) => {
+        console.log("editor ready!", quill);
+      };
+      const onEditorChange = ({ quill, html, text }) => {
+        console.log("editor change!", quill, html, text);
+        state._content = html;
+      };
+      // rich
+
+
       return {
         geneEvent:function(){
           emitEvent('geneEvent');
         },
+
+        // rich
+        state,
+        onEditorBlur,
+        onEditorFocus,
+        onEditorReady,
+        onEditorChange,
       }
     },
     mounted(){

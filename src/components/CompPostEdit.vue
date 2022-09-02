@@ -1,29 +1,82 @@
 <template>
-  <div>
-    <h1>Edit Post</h1>
-    <br><hr><br>
-    <h1>Title</h1>
-    <input v-model="post.title" style="width:600px;font-weight: bold;">
-    <h2>Content</h2>
-    <textarea v-model="post.content" style="width:600px;height: 300px;"></textarea>
-    <h3>Link Img</h3>
-    <input v-model="post.link_img" style="width:600px">
-    <h3>Reader Number</h3>
-    <input v-model="post.read_number">
-    <h3>Status</h3>
-    <input type="checkbox" v-model="post.status">
+  <div id="big2">
+    <h1>Add Post</h1>
+
+    <div class="iput">
+        <h3>Title</h3>
+        <input v-model="post.title" placeholder="Title" class="form-control" aria-describedby="emailHelp" >
+    </div>
+
+    <div class="iput">
+        <h3>Link Cover Photo</h3>
+        <input v-model="post.link_img" placeholder="Link cover photo" class="form-control" aria-describedby="emailHelp" >
+    </div>
+    
+    <div id="content">
+        <h3>Content</h3>
+        <quill-editor
+            v-model:value="state.content"
+            :options="state.editorOption"
+            :disabled="state.disabled"
+            @blur="onEditorBlur($event)"
+            @focus="onEditorFocus($event)"
+            @ready="onEditorReady($event)"
+            @change="onEditorChange($event)"
+        />
+    </div>
+    
+    <div class="iput" id="stt">
+        <h3>Status </h3>
+        <input type="checkbox" v-model="post.status">
+    </div>
+    <hr><br>
     <div> <button class="btn btn-outline-primary btnsave" @click="savePost(post.id)">Save</button> </div>
 
-    <br><hr><br>
   </div>
 </template>
 
 <script>
 
+import { reactive } from "vue";
 import BaseRequest from '@/core/BaseRequest';
 
 export default {
     name : "PostEdit",
+    setup() {
+      const state = reactive({
+        content: "<p></p>",
+        _content: "",
+        editorOption: {
+          placeholder: "Content",
+          modules: {
+
+          },
+        },
+        disabled: false,
+      });
+  
+      const onEditorBlur = (quill) => {
+        console.log("editor blur!", quill);
+      };
+      const onEditorFocus = (quill) => {
+        console.log("editor focus!", quill);
+      };
+      const onEditorReady = (quill) => {
+        console.log("editor ready!", quill);
+      };
+      const onEditorChange = ({ quill, html, text }) => {
+        console.log("editor change!", quill, html, text);
+        state._content = html;
+      };
+  
+      return {
+        state,
+        onEditorBlur,
+        onEditorFocus,
+        onEditorReady,
+        onEditorChange,
+      };
+    },
     data(){
         return{
             id_post:null,
@@ -42,6 +95,7 @@ export default {
         BaseRequest.get('posts/'+this.id_post)
         .then( data =>{
             this.post = data;
+            this.state.content = this.post.content;
         }) 
         .catch(error=>{
             console.log(error.reponse.status);
@@ -50,6 +104,7 @@ export default {
     },
     methods:{
         savePost:function(id_post){
+            this.post.content = this.state.content;
             BaseRequest.put('posts/'+id_post,this.post)
             .then( () =>{
                 alert("Chỉnh sửa bài viết thành công !");
@@ -69,6 +124,36 @@ export default {
 </script>
 
 <style scoped>
+#big2 {
+    padding: 60px;
+    padding-top:30px;
+}
+
+
+.iput {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    margin-bottom: 30px;
+}
+.iput input{
+    font-weight: bold;
+}
+#title input {
+    width: 100%px;
+    font-weight: bold;
+}
+
+#content {
+    margin-bottom: 30px;
+}
+#content h3 {
+    margin-right: 1000px;
+}
+
+#stt h3 {
+    margin-right: 10px;
+}
 .btnsave {
     transition: all 1s ease;
 }
