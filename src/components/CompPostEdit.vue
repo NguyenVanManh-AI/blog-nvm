@@ -43,6 +43,9 @@ import BaseRequest from '@/core/BaseRequest';
 
 export default {
     name : "PostEdit",
+    created(){
+        document.title = "Blog App - Edit"
+    },
     setup() {
       const state = reactive({
         content: "<p></p>",
@@ -97,6 +100,7 @@ export default {
         .then( data =>{
             this.post = data;
             this.state.content = this.post.content;
+            document.title = "Blog App - Edit | "+ this.post.title;
         }) 
         .catch(error=>{
             console.log(error.reponse.status);

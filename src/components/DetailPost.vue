@@ -5,6 +5,7 @@
         <img :src="post.link_img" >
         <!-- <p id="content" class="alert alert-secondary" role="alert" v-html="post.content"></p> -->
 
+        <!-- <p style="font-size:12px;margin-top: 10px;color:red">Nội dung Bài viết có thể có video . Để xem video Hãy đợi một lát ! .</p> -->
         <div  class="vueq">
             <quill-editor
             v-model:value="state.content"
@@ -19,6 +20,7 @@
         <p class="alert alert-success" role="alert" >Tác giả : {{post.auth}}</p>
         <!-- <p>ID_USER : {{post.id_user}}</p> -->
         Status <input type="checkbox" v-model="post.status" disabled>
+        <br><br>
         <div v-if="check"> 
             <button class="btn btn-outline-primary btngr" @click="editPost(post.id)">Edit</button> 
             <button class="btn btn-outline-danger btngr" @click="deletePost(post.id,post.title)" style="margin-left: 10px;">Delete</button> 
@@ -108,6 +110,7 @@ export default {
         .then( response=>{
             this.post = response.data[0] ; 
             let title = this.post.title;
+            document.title = "Blog App - "+title;
             this.state.content = this.post.content;
             if(this.user != null && this.post.id_user == this.user.id){
                 this.check = true ;

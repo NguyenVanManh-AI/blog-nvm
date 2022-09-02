@@ -5,7 +5,6 @@
         <p class="back-gr"></p>
         <div><img :src="postt.link_img" ></div>
         <h3>{{postt.title}}</h3>
-        <p>Tác giả : {{postt.auth}}</p>
         <div style="width:100%;cursor: pointer;">
           <quill-editor
             v-model:value="postt.content"
@@ -14,6 +13,7 @@
             @change="onEditorChange($event)"
             />
         </div>
+        <p>Tác giả : {{postt.auth}}</p>
         <p>{{postt.read_number}}</p>
         <!-- <p>ID_USER : {{postt.id_user}}</p> -->
         <p>Id Post : {{postt.id}}</p>
@@ -46,6 +46,9 @@ import { reactive } from "vue";
 
 export default {
     name : "CompPost",
+    created(){
+        document.title = "Blog App"
+    },
     components:{
         paginate: Paginate
     },

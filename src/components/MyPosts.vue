@@ -6,7 +6,7 @@
         <div><img :src="postt.link_img" ></div>
         <h3>{{postt.title}}</h3>
         <p>Tác giả : {{postt.auth}}</p>
-        <div style="width:100%;cursor: pointer;" class="nm">
+        <div style="width:100%;cursor: pointer;">
           <quill-editor
             v-model:value="postt.content"
             :options="state.editorOption"
@@ -45,6 +45,9 @@ import { reactive } from "vue";
 
 export default {
     name : "CompPost",
+    created(){
+        document.title = "Blog App - My Posts"
+    },
     components:{
         paginate: Paginate
     },
@@ -201,13 +204,6 @@ export default {
   cursor: pointer;
 }
 .article div:hover img {
-  transform: scale(1.3);
-}
-.nm {
-  width: 100%;
-  transition: all .3s ease;
-}
-.article div:hover .nm{
   transform: scale(1.3);
 }
 .article div:hover > .back-gr{

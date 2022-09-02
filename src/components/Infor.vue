@@ -19,7 +19,7 @@
                     <input v-model="user.userName" type="text" class="form-control bg-light font-weight-bold" placeholder="username">
                 </div> 
                 <div class="form-group">
-                    <input v-model="user.email" type="email" class="form-control bg-light font-weight-bold" placeholder="email">
+                    <input v-model="user.email" disabled type="email" class="form-control bg-light font-weight-bold" placeholder="email">
                 </div> 
                 <fieldset class="form-group">
                     <div class="row" >
@@ -46,6 +46,9 @@ import useEventBus from '../composables/useEventBus'
 
 export default {
     name : "InFor",
+    created(){
+        document.title = "Blog App - Information"
+    },
     data(){
         return{
             user:{
@@ -80,18 +83,24 @@ export default {
     },
     methods:{
         saveInfor:function(id_user){
-            let s = JSON.stringify(this.user);
-            BaseRequest.patch('users/'+id_user,this.user)
-            .then( () =>{
-                alert("Chỉnh sửa thông tin thành công !");
-                window.localStorage.setItem('user',s);
-                this.geneEvent();
-                this.err = null;
-            }) 
-            .catch(error=>{
-                console.log(error.reponse.status);
-                this.err = error.reponse.status;
-            })
+            if(this.user.lastName == '' && this.user.firstName == ''){
+                alert("Không được để trống First Name hoặc Last Name !");
+            }
+            else {
+                let s = JSON.stringify(this.user);
+                BaseRequest.patch('users/'+id_user,this.user)
+                .then( () =>{
+                    alert("Chỉnh sửa thông tin thành công !");
+                    window.localStorage.setItem('user',s);
+                    this.geneEvent();
+                    this.err = null;
+                }) 
+                .catch(error=>{
+                    console.log(error.reponse.status);
+                    this.err = error.reponse.status;
+                })
+            }
+            
         }
     }
 }

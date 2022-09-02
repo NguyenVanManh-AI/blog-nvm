@@ -50,6 +50,9 @@ import LoginRequest from '../requests/LoginRequest'
 
 	export default{
     name : "CompRegister",
+    created(){
+        document.title = "Blog App - Register"
+    },
 		data(){
 			return{ 
 				registerUser:{

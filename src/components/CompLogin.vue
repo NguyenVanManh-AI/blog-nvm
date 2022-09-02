@@ -27,6 +27,9 @@ import LoginRequest from '../requests/LoginRequest'
 
 export default{
 	name : "CompLogin",
+	created(){
+        document.title = "Blog App - Login"
+    },
 	data(){
 		return{
 			loginUser:{

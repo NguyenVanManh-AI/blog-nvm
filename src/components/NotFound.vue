@@ -8,7 +8,10 @@
 
 <script>
 export default{
-    name : 'NotFound'
+    name : 'NotFound',
+	created(){
+        document.title = "Blog App - Page Not Found"
+    }
 }
 
 </script>

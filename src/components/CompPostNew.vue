@@ -15,6 +15,7 @@
     <div id="content">
         <h3>Content</h3>
         <span style="font-size:10px">Nếu không có công cụ chỉnh sửa Content vui lòng request để tải lại trang !</span>
+        <p style="font-size:10px">Bạn có thể copy paste một bài viết bao gồm ảnh , text ,... của người khác or web khác rồi cho vào content để làm nội dung của bạn . Hoặc có thể import ảnh từ chính máy của bạn và Import Video ở trang web khác .</p>
         <quill-editor
             v-model:value="state.content"
             :options="state.editorOption"
@@ -30,6 +31,7 @@
         <h3>Status </h3>
         <input type="checkbox" v-model="post.status">
     </div>
+    <hr>
     <div> <button class="btn btn-outline-primary btnadd" @click="addPost()">Add</button> </div>
 
 </div>
@@ -45,6 +47,9 @@ export default {
     name : "PostNew",
     components:{
         
+    },
+    created(){
+        document.title = "Blog App - New"
     },
     setup() {
       const state = reactive({
