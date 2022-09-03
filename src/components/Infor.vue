@@ -2,7 +2,7 @@
     <div>
         <h1>Information User</h1>
         <div class="row mx-auto">
-            <form class="col-6 mx-auto" @submit.prevent="saveInfor(this.user.id)">
+            <form class="col-6 mx-auto" >
                 <div class="alert alert-success" v-if="err">
                     Đăng kí thành công !
                 </div>
@@ -31,7 +31,7 @@
                     </div>
                 </fieldset>
                 <div class="form-group">
-                    <button style="width: 100%" role="button" class="btn btn-primary btn-block">Save</button>
+                    <button @Click="this.saveInfor(this.user.id)" style="width: 100%" role="button" class="btn btn-primary btn-block">Save</button>
                 </div>
             </form>
         </div>
@@ -83,6 +83,7 @@ export default {
     },
     methods:{
         saveInfor:function(id_user){
+            alert("Chỉnh sửa thông tin thành công !");
             if(this.user.lastName == '' && this.user.firstName == ''){
                 alert("Không được để trống First Name hoặc Last Name !");
             }
