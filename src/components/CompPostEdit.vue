@@ -19,10 +19,6 @@
             v-model:value="state.content"
             :options="state.editorOption"
             :disabled="state.disabled"
-            @blur="onEditorBlur($event)"
-            @focus="onEditorFocus($event)"
-            @ready="onEditorReady($event)"
-            @change="onEditorChange($event)"
         />
     </div>
     
@@ -59,26 +55,26 @@ export default {
         disabled: false,
       });
   
-      const onEditorBlur = (quill) => {
-        console.log("editor blur!", quill);
-      };
-      const onEditorFocus = (quill) => {
-        console.log("editor focus!", quill);
-      };
-      const onEditorReady = (quill) => {
-        console.log("editor ready!", quill);
-      };
-      const onEditorChange = ({ quill, html, text }) => {
-        console.log("editor change!", quill, html, text);
-        state._content = html;
-      };
+    //   const onEditorBlur = (quill) => {
+    //     console.log("editor blur!", quill);
+    //   };
+    //   const onEditorFocus = (quill) => {
+    //     console.log("editor focus!", quill);
+    //   };
+    //   const onEditorReady = (quill) => {
+    //     console.log("editor ready!", quill);
+    //   };
+    //   const onEditorChange = ({ quill, html, text }) => {
+    //     console.log("editor change!", quill, html, text);
+    //     state._content = html;
+    //   };
   
       return {
         state,
-        onEditorBlur,
-        onEditorFocus,
-        onEditorReady,
-        onEditorChange,
+        // onEditorBlur,
+        // onEditorFocus,
+        // onEditorReady,
+        // onEditorChange,
       };
     },
     data(){
