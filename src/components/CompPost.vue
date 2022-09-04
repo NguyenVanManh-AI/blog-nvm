@@ -209,8 +209,15 @@ export default {
 
 @media (min-width : 425px) and (max-width : 768px) {
   .pag {
-    margin-left: 30%;
+    margin-left: 35%;
     font-size: 12px;
+  }
+  .article > div {
+    width: 44%;
+    height: 300px;
+  }
+  .article h3 {
+    font-size: 16px;
   }
 }
 
@@ -219,11 +226,25 @@ export default {
     margin-left: 26%;
     font-size: 12px;
   }
+  .article > div {
+    width: 44%;
+    height: 200px;
+  }
+  .article h3 {
+    font-size: 14px;
+  }
 }
 
 @media (min-width : 320px) and (max-width : 375px) {
   .pag {
     margin-left: 20%;
+    font-size: 12px;
+  }
+  .article > div {
+    width: 90%;
+    height: 200px;
+  }
+  .article h3 {
     font-size: 12px;
   }
 }
