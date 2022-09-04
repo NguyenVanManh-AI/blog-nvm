@@ -118,12 +118,12 @@ export default {
     border-radius: 30px;
     background-color: #0085FF;
     transition: all 1s ease;
-    border: none;
+    border:none;
 }
 .bt{
     margin-top: 10px;
     margin-right: 30px;
-    width: 290px;
+    width: 260px; /* cái này mà dài thì trang web sẽ bị nhôi ra */
 }
 .bt a {
     color: #0085FF;
