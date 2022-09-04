@@ -109,9 +109,7 @@ export default {
 #tit a:hover {
     color: #0085FF;
 } 
-.new-post {
-    margin-left: 900px;
-}
+
 .acc {
     margin-left: 30px;
     width: 60px;
@@ -169,7 +167,9 @@ export default {
     align-content: center;
     align-items: center;
     display: flex;
-    
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 60px;
 }
 #big {
     /* height: 118px; */
@@ -179,8 +179,12 @@ export default {
     box-shadow: 0px 10px 10px -10px gray;
     border-top: 2px solid rgb(122, 183, 252);
 }
+
+.new-post {
+    /* margin-left: 900px; */
+}
 #gr1 {
-    margin-left: 900px;
+    /* margin-left: 900px; */
 }
 #gr1 button {
     margin-left: 10px;
@@ -188,55 +192,56 @@ export default {
 
 
 
+/* RESPONSIVE */
+
+
 @media (min-width : 1243px) and (max-width : 1440px) {
-    #gr1 {
-        margin-left: 900px;
-    }
-    .new-post {
-        margin-left: 900px;
-    }
+
 }
 
 
 
 /* Responsive Laptop 1024px */
 
-@media (min-width : 1024px) and (max-width : 1243px) {
-    #gr1 {
-        margin-left: 700px;
-    }
-    .new-post {
-        margin-left: 700px;
-    }
+@media (min-width : 1124px) and (max-width : 1243px) {
+
+}
+@media (min-width : 1024px) and (max-width : 1124px) {
+
 }
 
+@media (min-width : 968px) and (max-width : 1024px) {
+
+}
+
+@media (min-width : 868px) and (max-width : 968px) {
+
+}
 
 
 /* Responsive Laptop 1024px */
-@media (min-width : 768px) and (max-width : 1024px) {
-    #gr1 {
-        margin-left: 450px;
-    }
-    .new-post {
-        margin-left: 450px;
-    }
+@media (min-width : 768px) and (max-width : 868px) {
+
 }
 
-@media (min-width : 425px) and (max-width : 768px) {
-    #gr1 {
-        margin-left: 200px;
-    }
-    .new-post {
-        margin-left: 200px;
-    }
+@media (min-width : 700px) and (max-width : 768px) {
+
+}
+
+/* Responsive Laptop 1024px */
+@media (min-width : 668px) and (max-width : 700px) {
+
+}
+
+@media (min-width : 425px) and (max-width : 668px) {
+
 }
 
 @media (min-width : 375px) and (max-width : 425px) {
-    #gr1 {
-        margin-left: 150px;
-    }
     .new-post {
-        margin-left: 150px;
+        font-size: 12px;
+    }
+    #gr1 button {
         font-size: 12px;
     }
     #head {
@@ -265,21 +270,38 @@ export default {
 }
 
 @media (min-width : 320px) and (max-width : 375px) {
-    #gr1 {
-        margin-left: 80px;
-    }
     .new-post {
-        margin-left: 80px;
+        font-size: 12px;
+    }
+    #gr1 button {
+        font-size: 12px;
+    }
+    #head {
+        height: 60px;
+    }
+    #logo img {
+        width: 40px;
+    }
+    .acc {
+        width: 40px;
+        height: 40px;
+        padding-top: 3px;
+    }
+    .acc i {
+        font-size: 29px;
+        margin: 0px;
+        padding: 0px;
+    }
+    .bt {
+        width: 200px;
+    }
+    .bt a {
+        font-size: 12px;
     }
 }
 
 @media (max-width : 320px) {
-    #gr1 {
-        margin-left: 30px;
-    }
-    .new-post {
-        margin-left: 30px;
-    }
+
 }
 
 

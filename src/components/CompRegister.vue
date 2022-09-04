@@ -2,7 +2,7 @@
 	<div>
 		<h1>Register</h1>
 		<div class="row mx-auto">
-		<form class="col-6 mx-auto" action="https://m-fake-rest-api-nodejs.herokuapp.com/register" @submit.prevent="register()">
+		<form class="col-7 mx-auto" action="https://m-fake-rest-api-nodejs.herokuapp.com/register" @submit.prevent="register()">
 			<div class="alert alert-success" v-if="registerSucces">
 				Đăng kí thành công !
 			</div>

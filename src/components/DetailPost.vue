@@ -157,16 +157,21 @@ export default {
     transition: all 1s ease;
 }
 #post {
-    margin: 30px;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    width: 100%;
 }
 #content {
     margin-left: 100px;
     margin-right: 100px;
 }
-#post img {
-    width: 500px;
+#post > img {
+    width: 60%;
 }
 .vueq {
-    width: 1200px;
+    width: 100%;
 }
+
+
 </style>

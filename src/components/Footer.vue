@@ -83,8 +83,8 @@
   background-color: #0e2d52;
   color: white;
   text-align: start;
-  padding-right: 210px;
-  padding-left: 260px;
+  padding-right: 12%;
+  padding-left: 12%;
 }
 #footer ul,li {
   list-style: none;
@@ -130,9 +130,13 @@
 }
 #top > ul {
   display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 #top > ul > li {
-  margin-right: 73px;
+  margin-right: 30px;
+  margin-bottom: 20px;
+
 }
 #top > ul > li > ul > li:nth-child(1){
   font-size: 14px;
@@ -183,6 +187,7 @@
   color: gray;
   justify-content:space-between;
   display: flex;
+  flex-wrap: wrap;
 }
 
 </style>

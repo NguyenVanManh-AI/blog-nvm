@@ -63,10 +63,12 @@ export default {
 }
 
 .max {
-  height: 526px;
+  /* height: 526px; */
+  height: 495px;
 }
 .min {
-  height: 490px;
+  /* height: 490px; */
+  height: 459px;
 }
 #view{
   display: grid;
