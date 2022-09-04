@@ -12,10 +12,12 @@
         <input v-model="post.link_img" placeholder="Link cover photo" class="form-control" aria-describedby="emailHelp" >
     </div>
     
+    <div id="h3content">
+        <h3 >Content</h3>
+    </div>
+    <span style="font-size:10px">Nếu không có công cụ chỉnh sửa Content vui lòng request để tải lại trang !</span>
+    <p style="font-size:10px">Bạn có thể copy paste một bài viết bao gồm ảnh , text ,... của người khác or web khác rồi cho vào content để làm nội dung của bạn . Hoặc có thể import ảnh từ chính máy của bạn và Import Video ở trang web khác .</p>
     <div id="content">
-        <h3>Content</h3>
-        <span style="font-size:10px">Nếu không có công cụ chỉnh sửa Content vui lòng request để tải lại trang !</span>
-        <p style="font-size:10px">Bạn có thể copy paste một bài viết bao gồm ảnh , text ,... của người khác or web khác rồi cho vào content để làm nội dung của bạn . Hoặc có thể import ảnh từ chính máy của bạn và Import Video ở trang web khác .</p>
         <quill-editor
             v-model:value="state.content"
             :options="state.editorOption"
@@ -122,9 +124,11 @@ export default {
 
 <style scoped>
 #big {
-    max-width: 1280px;
-    padding: 120px;
     padding-top: 30px;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-bottom: 60px;
+    width: 100%;
 }
 
 
@@ -144,9 +148,12 @@ export default {
 
 #content {
     margin-bottom: 30px;
+    width: 100%;
 }
-#content h3 {
-    margin-right: 1000px;
+#h3content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
 }
 
 #stt h3 {

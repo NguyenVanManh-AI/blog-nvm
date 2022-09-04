@@ -12,9 +12,11 @@
         <input v-model="post.link_img" placeholder="Link cover photo" class="form-control" aria-describedby="emailHelp" >
     </div>
     
+    <div id="h3content">
+        <h3 >Content</h3>
+    </div>
+    <span style="font-size:10px">Nếu không có công cụ chỉnh sửa Content vui lòng request để tải lại trang !</span>
     <div id="content">
-        <h3>Content</h3>
-        <span style="font-size:10px">Nếu không có công cụ chỉnh sửa Content vui lòng request để tải lại trang !</span>
         <quill-editor
             v-model:value="state.content"
             :options="state.editorOption"
@@ -126,8 +128,11 @@ export default {
 
 <style scoped>
 #big2 {
-    padding: 60px;
-    padding-top:30px;
+    padding-top: 30px;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-bottom: 60px;
+    width: 100%;
 }
 
 
@@ -147,10 +152,14 @@ export default {
 
 #content {
     margin-bottom: 30px;
+    width: 100%;
 }
-#content h3 {
-    margin-right: 1100px;
+#h3content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
 }
+
 
 #stt h3 {
     margin-right: 10px;
