@@ -10,7 +10,7 @@
                     <button class="btn btn-outline-primary" @click="this.$router.push({name:'Login'});">Login</button>
                     <button class="btn btn-outline-primary" @click="this.$router.push({name:'Register'});">Register</button>
                 </div>
-                <div v-if="user!=null">
+                <div v-if="user!=null" >
                     <div class="dropdown">
                         <button class="btn btn-outline-primary new-post" @click="this.$router.push({name:'PostNew'});">New Post</button>
                         <button class="btn btn-secondary dropdown-toggle acc" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -80,6 +80,8 @@ export default {
 </script>
   
 <style scoped>
+
+/* Laptop L 1440px , chính xác là (1243 X 531)px   */
 #tit{
     width: 100%;
     height: 36px;
@@ -183,5 +185,104 @@ export default {
 #gr1 button {
     margin-left: 10px;
 }
+
+
+
+@media (min-width : 1243px) and (max-width : 1440px) {
+    #gr1 {
+        margin-left: 900px;
+    }
+    .new-post {
+        margin-left: 900px;
+    }
+}
+
+
+
+/* Responsive Laptop 1024px */
+
+@media (min-width : 1024px) and (max-width : 1243px) {
+    #gr1 {
+        margin-left: 700px;
+    }
+    .new-post {
+        margin-left: 700px;
+    }
+}
+
+
+
+/* Responsive Laptop 1024px */
+@media (min-width : 768px) and (max-width : 1024px) {
+    #gr1 {
+        margin-left: 450px;
+    }
+    .new-post {
+        margin-left: 450px;
+    }
+}
+
+@media (min-width : 425px) and (max-width : 768px) {
+    #gr1 {
+        margin-left: 200px;
+    }
+    .new-post {
+        margin-left: 200px;
+    }
+}
+
+@media (min-width : 375px) and (max-width : 425px) {
+    #gr1 {
+        margin-left: 150px;
+    }
+    .new-post {
+        margin-left: 150px;
+        font-size: 12px;
+    }
+    #head {
+        height: 60px;
+    }
+    #logo img {
+        width: 40px;
+    }
+    .acc {
+        width: 40px;
+        height: 40px;
+        padding-top: 3px;
+    }
+    .acc i {
+        font-size: 29px;
+        margin: 0px;
+        padding: 0px;
+    }
+    .bt {
+        width: 200px;
+    }
+    .bt a {
+        font-size: 12px;
+    }
+
+}
+
+@media (min-width : 320px) and (max-width : 375px) {
+    #gr1 {
+        margin-left: 80px;
+    }
+    .new-post {
+        margin-left: 80px;
+    }
+}
+
+@media (max-width : 320px) {
+    #gr1 {
+        margin-left: 30px;
+    }
+    .new-post {
+        margin-left: 30px;
+    }
+}
+
+
+
 </style>
   
