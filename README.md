@@ -1,7 +1,7 @@
 # Vue API Auth CRUD
 ## Demo
 ```
-Demo: https://blog-nvm.herokuapp.com/
+https://blog-nvm.herokuapp.com/
 ```
 
 ## Project setup
